@@ -1,8 +1,8 @@
 {
     "name":"testbox-snapshots",
-    "version":"0.0.0",
+    "version":"1.0.0",
     "author":"Eric Peterson",
-    "location":"elpete/testbox-snapshots#0.0.0",
+    "location":"elpete/testbox-snapshots#v1.0.0",
     "homepage":"https://github.com/elpete/testbox-snapshots",
     "documentation":"https://github.com/elpete/testbox-snapshots",
     "repository":{
@@ -31,7 +31,9 @@
     "contributors":[
         "Eric Peterson"
     ],
-    "dependencies":{},
+    "dependencies":{
+        
+    },
     "devDependencies":{
         "testbox":"^2.4.0+80"
     },
