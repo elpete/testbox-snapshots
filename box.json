@@ -1,0 +1,51 @@
+{
+    "name":"testbox-snapshots",
+    "version":"0.0.0",
+    "author":"Eric Peterson",
+    "location":"elpete/testbox-snapshots#0.0.0",
+    "homepage":"https://github.com/elpete/testbox-snapshots",
+    "documentation":"https://github.com/elpete/testbox-snapshots",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/elpete/testbox-snapshots"
+    },
+    "bugs":"https://github.com/elpete/testbox-snapshots/issues",
+    "slug":"testbox-snapshots",
+    "shortDescription":"Use snapshot testing to easily prevent regressions in TestBox",
+    "description":"Use snapshot testing to easily prevent regressions in TestBox",
+    "instructions":"https://github.com/elpete/testbox-snapshots/blob/master/README.md",
+    "type":"testing",
+    "keywords":[
+        "testbox",
+        "snapshot",
+        "regression",
+        "testing",
+        "tests"
+    ],
+    "license":[
+        {
+            "type":"MIT",
+            "URL":"https://github.com/elpete/testbox-snapshots/blob/master/LICENSE"
+        }
+    ],
+    "contributors":[
+        "Eric Peterson"
+    ],
+    "dependencies":{},
+    "devDependencies":{
+        "testbox":"^2.4.0+80"
+    },
+    "installPaths":{
+        "testbox":"testbox"
+    },
+    "scripts":{
+        "postVersion":"package set location='elpete/testbox-snapshots#v`package version`'",
+        "onRelease":"publish",
+        "postPublish":"!git push && !git push --tags"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}
