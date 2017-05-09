@@ -85,7 +85,7 @@ component {
 
         if ( url.updateSnapshots ) {
             // xml includes html (which is our main use case)
-            if ( isSimpleValue( expectation.actual ) && isXML( expectation.actual ) ) {
+            if ( isSimpleValue( expectation.actual ) ) {
                 fileWrite( snapshotPath & ".xml", indentXML( expectation.actual ) );
                 thisSpec.debug( "Snapshot updated: [#snapshotFilename#.xml]" );
             }
@@ -109,7 +109,7 @@ component {
             contents = fileRead( snapshotPath & ".json" );
         }
         
-        if ( isXML( contents ) ) {
+        if ( ! isJSON( contents ) ) {
             if ( indentXML( expectation.actual ) == contents ) {
                 return true;
             }
