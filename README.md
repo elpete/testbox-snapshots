@@ -50,3 +50,13 @@ To create an inital snapshot or to update a snapshot, the url flag `updateSnapsh
 > **Take care! Snapshots will be updated for all ran tests with this url flag.  Make sure you are only running the tests you want to update before adding the flag.**
 
 Any tests that update a snapshot will pass that matcher.
+
+### Diffing
+
+If you would like a more targeted diff output, add the following line to your `tests/Application.cfc`:
+
+```cfc
+this.javaSettings = { loadPaths = [ "testbox-snapshots/lib" ], reloadOnChange = false };
+```
+
+This adds a Java library that will provide a more targeted diff than otherwise is possible.  If this line is not included, the package will fall back to showing the entire contents.

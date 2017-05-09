@@ -114,7 +114,19 @@ component {
                 return true;
             }
 
-            expectation.message = "The snapshots didn't match.  Actual: [#indentXML( expectation.actual )#]. Expected: [#contents#]. (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            try {
+                var differ = createObject( "java", "difflib.DiffUtils" );
+                var patch = differ.diff( contents.listToArray( "\n" ), indentXML( expectation.actual ).listToArray( "\n" ) );
+                var changes = [];
+                for ( var delta in patch.getDeltas() ) {
+                    arrayAppend( changes, delta.toString() );
+                }
+
+                expectation.message = "The snapshots didn't match.  #changes.toList( " -- " )# (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            }
+            catch ( any e ) {
+                expectation.message = "The snapshots didn't match.  Actual: [#indentXML( expectation.actual )#]. Expected: [#contents#]. (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            }
 
             return false;
         }
@@ -123,7 +135,19 @@ component {
                 return true;
             }
 
-            expectation.message = "The snapshots didn't match.  Actual: [#serializeJSON( expectation.actual )#]. Expected: [#contents#]. (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            try {
+                var differ = createObject( "java", "difflib.DiffUtils" );
+                var patch = differ.diff( contents.listToArray( "\n" ), serializeJSON( expectation.actual ).listToArray( "\n" ) );
+                var changes = [];
+                for ( var delta in patch.getDeltas() ) {
+                    arrayAppend( changes, delta.toString() );
+                }
+
+                expectation.message = "The snapshots didn't match.  #changes.toList( " -- " )# (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            }
+            catch ( any e ) {
+                expectation.message = "The snapshots didn't match.  Actual: [#serializeJSON( expectation.actual )#]. Expected: [#contents#]. (Hint: run with the `updateSnapshots` url flag to update this snapshot instead.";
+            }
 
             return false;
         }
