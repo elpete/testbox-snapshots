@@ -8,6 +8,10 @@ component {
             throw( type = "NotSupported", message = "`notToMatchSnapshot` is not supported." );
         }
 
+        var isHTML = function( required string str ) {
+            return ! arrayIsEmpty( REMatch( "<[^>]+>", str ) );
+        };
+
         // include function locally because closures
         var indentXML = function( required string xml, string indent = "    " ) {
             var lines = "";
@@ -85,7 +89,7 @@ component {
 
         if ( url.updateSnapshots ) {
             // xml includes html (which is our main use case)
-            if ( isSimpleValue( expectation.actual ) ) {
+            if ( isHTML( expectation.actual ) ) {
                 fileWrite( snapshotPath & ".xml", indentXML( expectation.actual ) );
                 thisSpec.debug( "Snapshot updated: [#snapshotFilename#.xml]" );
             }
@@ -109,7 +113,7 @@ component {
             contents = fileRead( snapshotPath & ".json" );
         }
         
-        if ( ! isJSON( contents ) ) {
+        if ( isHTML( contents ) ) {
             if ( indentXML( expectation.actual ) == contents ) {
                 return true;
             }
