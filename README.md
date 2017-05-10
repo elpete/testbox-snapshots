@@ -43,6 +43,18 @@ Multiple snapshots can be stored in a single spec.  In this case, the order of t
 
 Please note, there is no `notToMatchSnapshot` matcher.
 
+### Snapshot Location
+
+By default, snapshots are stored in `/tests/resources/snapshots`.  You can override this directly by passing in a `snapshotDirectory` to the `toMatchSnapshot` matcher.
+
+```
+expect( users ).toMatchSnapshot(
+    snapshotDirectory = expandPath( "/my/custom/path/to/snapshots"
+) );
+```
+
+When using this feature, make sure to use named parameters and an absolute path.
+
 ### Updating Snapshots
 
 To create an inital snapshot or to update a snapshot, the url flag `updateSnapshots` must be passed.
