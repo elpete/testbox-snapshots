@@ -8,12 +8,13 @@ component {
             throw( type = "NotSupported", message = "`notToMatchSnapshot` is not supported." );
         }
 
-        var isHTML = function( required string str ) {
+        var isHTML = function( str ) {
+            if ( ! isSimpleValue( str ) ) { return false; }
             return ! arrayIsEmpty( REMatch( "<[^>]+>", str ) );
         };
 
         // include function locally because closures
-        var indentXML = function( required string xml, string indent = "    " ) {
+        var indentXML = function( xml, indent = "    " ) {
             var lines = "";
             var depth = "";
             var line = "";
