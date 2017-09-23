@@ -1,4 +1,5 @@
 # TestBox Snapshots
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 ## Use snapshot testing to easily prevent regressions in TestBox
@@ -10,7 +11,7 @@ Snapshot testing was recently popularized by Facebook's [Jest testing framework 
 To add the matcher, pass in the path to the `SnapshotMatchers.cfc` file in your `beforeAll` method:
 
 ```cfc
-component extends="" {
+component extends="testbox.system.BaseSpec" {
     
     function beforeAll() {
         addMatchers( "testbox-snapshots.SnapshotMatchers" );
@@ -73,6 +74,11 @@ this.javaSettings = { loadPaths = [ "testbox-snapshots/lib" ], reloadOnChange = 
 ```
 
 This adds a Java library that will provide a more targeted diff than otherwise is possible.  If this line is not included, the package will fall back to showing the entire contents.
+
+## Blog Posts
+
+Check out this great introduction to [Approval Testing with `testbox-snapshots`](http://jasonsteinshouer.com/2017/09/20/refactoring-cfml-with-snapshot-testing-part-I.html) by [Jason Steinshouer.](https://github.com/jsteinshouer)
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
