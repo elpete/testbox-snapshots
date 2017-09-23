@@ -1,4 +1,5 @@
 # TestBox Snapshots
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 ## Use snapshot testing to easily prevent regressions in TestBox
 
@@ -72,3 +73,13 @@ this.javaSettings = { loadPaths = [ "testbox-snapshots/lib" ], reloadOnChange = 
 ```
 
 This adds a Java library that will provide a more targeted diff than otherwise is possible.  If this line is not included, the package will fall back to showing the entire contents.
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars1.githubusercontent.com/u/2583646?v=4" width="100px;"/><br /><sub>Eric Peterson</sub>](https://github.com/elpete)<br />[💻](https://github.com/elpete/testbox-snapshots/commits?author=elpete "Code") [📖](https://github.com/elpete/testbox-snapshots/commits?author=elpete "Documentation") [⚠️](https://github.com/elpete/testbox-snapshots/commits?author=elpete "Tests") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
