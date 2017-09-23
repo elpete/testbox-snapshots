@@ -17,6 +17,15 @@
         "doc",
         "test"
       ]
+    },
+    {
+      "login": "jsteinshouer",
+      "name": "Jason Steinshouer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2914865?v=4",
+      "profile": "http://jasonsteinshouer.com",
+      "contributions": [
+        "blog"
+      ]
     }
   ]
 }
