@@ -2,6 +2,10 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/TQMfPZtDP7SHs7UgJVGg61uH/elpete/testbox-snapshots'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/TQMfPZtDP7SHs7UgJVGg61uH/elpete/testbox-snapshots.svg' />
+</a>
+
 ## Use snapshot testing to easily prevent regressions in TestBox
 
 Snapshot testing was recently popularized by Facebook's [Jest testing framework for Javascript](https://facebook.github.io/jest/).  The idea is that rather than test a specific return value, we test against a regression in a return value.
