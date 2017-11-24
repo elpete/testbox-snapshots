@@ -51,8 +51,8 @@ By default, snapshots are stored in `/tests/resources/snapshots`.  You can overr
 
 ```
 expect( users ).toMatchSnapshot(
-    snapshotDirectory = expandPath( "/my/custom/path/to/snapshots"
-) );
+    snapshotDirectory = expandPath( "/my/custom/path/to/snapshots" )
+);
 ```
 
 When using this feature, make sure to use named parameters and an absolute path.
