@@ -33,7 +33,7 @@ component {
                     isEndTag = left(line, 2) == "</";
                     isSelfClose = right(line, 2) == "/>" || REFindNoCase("<([a-z0-9_-]*).*</\1>", line);
                     if ( isEndTag ) {
-                        //  use max for safety against multi-line open tags 
+                        //  use max for safety against multi-line open tags
                         depth = max(0, depth - 1);
                     }
                     lines[i] = repeatString(indent, depth) & line;
@@ -41,7 +41,7 @@ component {
                         depth = depth + 1;
                     }
                 } else if ( isCDATAStart ) {
-                    /* 
+                    /*
               we don't indent CDATA ends, because that would change the
               content of the CDATA, which isn't desirable
               */
@@ -54,36 +54,28 @@ component {
         // cache the spec since we use it over and over
         var thisSpec = expectation.getSpec();
 
-        // create the snapshot directory provided if it doesn't exist
-        if ( ! directoryExists( args.snapshotDirectory ) ) {
-            directoryCreate( args.snapshotDirectory );
-        }
-
         // keep track of all snapshot numbers by suite name
         if ( ! structKeyExists( thisSpec, "snapshotNumbers" ) ) {
             thisSpec.snapshotNumbers = {};
         }
 
         // create a file system safe file name
-        var specFilename = getMetadata( thisSpec ).fullname;
-        specFilename = replace( specFilename, "/", "__", "ALL" );
-        specFilename = replace( specFilename, " ", "_", "ALL" );
-        specFilename = replace( specFilename, ".", "_", "ALL" );
-        specFilename = replace( specFilename, "`", "", "ALL" );
-
-        var suiteName = thisSpec.$currentExecutingSpec;
-        suiteName = replace( suiteName, "/", "__", "ALL" );
-        suiteName = replace( suiteName, " ", "_", "ALL" );
-        suiteName = replace( suiteName, ".", "_", "ALL" );
-        suiteName = replace( suiteName, "`", "", "ALL" );
+        var specFilename = reReplaceNoCase( getMetadata( thisSpec ).fullname, "[^a-z0-9]", "_", "ALL" );
+        var suiteName = hash( thisSpec.$currentExecutingSpec );
 
         // make sure we have an entry for this suite name
         if ( ! structKeyExists( thisSpec.snapshotNumbers, suiteName ) ) {
             thisSpec.snapshotNumbers[ suiteName ] = 1;
         }
 
-        var snapshotFilename = "#specFilename##suiteName#-#thisSpec.snapshotNumbers[ suiteName ]#";
-        var snapshotPath = "#args.snapshotDirectory#/#snapshotFilename#";
+        var snapshotFolder = "#args.snapshotDirectory#/#specFilename#";
+        // create the snapshot directory provided if it doesn't exist
+        if ( ! directoryExists( snapshotFolder ) ) {
+            directoryCreate( snapshotFolder );
+        }
+
+        var snapshotFilename = "#suiteName#-#thisSpec.snapshotNumbers[ suiteName ]#";
+        var snapshotPath = "#snapshotFolder#/#snapshotFilename#";
 
         // increment the snapshot number in case there are more snapshots in this suite
         thisSpec.snapshotNumbers[ suiteName ]++;
@@ -113,7 +105,7 @@ component {
         catch ( any e ) {
             contents = fileRead( snapshotPath & ".json" );
         }
-        
+
         if ( isHTML( contents ) ) {
             if ( indentXML( expectation.actual ) == contents ) {
                 return true;
